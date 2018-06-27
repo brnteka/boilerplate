@@ -68,8 +68,8 @@ gulp.task('scss', function() {
             errorHandler: onError
         }))
         .pipe(sass({
-            outputStyle: 'compressed',
-            includePaths: ['node_modules/susy/sass']
+            outputStyle: 'compressed'
+            // includePaths: ['node_modules/susy/sass']
             // outputStyle: 'expanded'
         }))
         .pipe(autoprefixer({
@@ -78,7 +78,7 @@ gulp.task('scss', function() {
         }))
         // .pipe(concatCss('./style.css'))
         // .pipe(replace('.././dist/fonts//', './fonts/'))
-        // .pipe(gulp.dest('./dist/'))
+        .pipe(gulp.dest('./dist/'))
         // .pipe(browserSync.stream());
         .pipe(browserSync.reload({ stream: true }));
 });
