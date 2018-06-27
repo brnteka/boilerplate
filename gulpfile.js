@@ -39,10 +39,10 @@ var onError = function (err) {
 //inject
 
 gulp.task('index', ['pug'], function() {
-    return gulp.src('./dist/**/*.html')
-        .pipe(inject(gulp.src('./dist/**/*.css', { read: false }), { relative: true, ignorePath: 'dist', addRootSlash: false, name: 'styles' }))
-        .pipe(inject(gulp.src('./dist/**/*.js', { read: false }), { relative: true, ignorePath: 'dist', addRootSlash: false, name: 'scripts' }))
-        .pipe(gulp.dest('./dist/'));
+    return gulp.src('dist/**/*.html')
+        .pipe(inject(gulp.src('dist/**/*.css', { read: false }), { relative: true, ignorePath: 'dist', addRootSlash: false, name: 'styles' }))
+        .pipe(inject(gulp.src('dist/**/*.js', { read: false }), { relative: true, ignorePath: 'dist', addRootSlash: false, name: 'scripts' }))
+        .pipe(gulp.dest('dist/'));
 });
 
 // Fontello
@@ -63,7 +63,7 @@ gulp.task('index', ['pug'], function() {
 // SCSS
 
 gulp.task('scss', function() {
-    return gulp.src('./dev/scss/styles.scss')
+    return gulp.src('dev/scss/styles.scss')
         .pipe(plumber({
             errorHandler: onError
         }))
@@ -78,7 +78,7 @@ gulp.task('scss', function() {
         }))
         // .pipe(concatCss('./style.css'))
         // .pipe(replace('.././dist/fonts//', './fonts/'))
-        .pipe(gulp.dest('./dist/'))
+        .pipe(gulp.dest('dist/'))
         // .pipe(browserSync.stream());
         .pipe(browserSync.reload({ stream: true }));
 });
@@ -86,23 +86,23 @@ gulp.task('scss', function() {
 // JS
 
 gulp.task('js', function() {
-    return gulp.src('./dev/js/**/*.js')
+    return gulp.src('dev/js/**/*.js')
         .pipe(uglify())
-        .pipe(gulp.dest('./dist'))
+        .pipe(gulp.dest('dist'))
         .pipe(browserSync.reload({ stream: true }));
 })
 
 // PUG
 
 gulp.task('pug', function() {
-    return gulp.src(['./dev/pug/**/*.pug', '!./dev/pug/parts/**/*.pug'])
+    return gulp.src(['dev/pug/**/*.pug', '!dev/pug/parts/**/*.pug'])
         .pipe(plumber({
             errorHandler: onError
         }))
         .pipe(pug({
             // pretty: true
         }))
-        .pipe(gulp.dest('./dist/'))
+        .pipe(gulp.dest('dist/'))
         // .pipe(browserSync.stream());
         .pipe(browserSync.reload({ stream: true }));
 })
@@ -112,14 +112,14 @@ gulp.task('pug', function() {
 gulp.task('serve', function() {
     browserSync.init({
         server: {
-            baseDir: "./dist/"
+            baseDir: "dist/"
         },
         open: false
     })
 })
 
 gulp.task('default', ['scss', 'js', 'index', 'serve'], function() {
-    gulp.watch('**/*.scss', { cwd: './dev/scss' }, ['scss', 'index']);
-    gulp.watch('**/*.pug', { cwd: './dev/pug' }, ['pug', 'index']);
-    gulp.watch('**/*.js', { cwd: './dev/js' }, ['js', 'index']);
+    gulp.watch('**/*.scss', { cwd: 'dev/scss' }, ['scss', 'index']);
+    gulp.watch('**/*.pug', { cwd: 'dev/pug' }, ['pug', 'index']);
+    gulp.watch('**/*.js', { cwd: 'dev/js' }, ['js', 'index']);
 });
