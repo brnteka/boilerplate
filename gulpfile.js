@@ -10,31 +10,11 @@ var autoprefixer = require('gulp-autoprefixer');
 var inject = require('gulp-inject');
 var uglify = require('gulp-uglify');
 
-
-//normalize
-
-// var normalize = './node_modules/normalize.css/normalize.css';
-
-// gulp.task('normalize', function(){
-//   return gulp.src(normalize)
-//   .pipe(gulp.dest('./dev/scss/'))
-// });
-
-
 //plumber error
 
 var onError = function (err) {
   console.log(err);
 };
-
-//css rest
-
-// var reset = "./node_modules/reset-css/reset.css";
-
-// gulp.task('cssreset', function() {
-//     return gulp.src(reset)
-//         .pipe(gulp.dest('./dev/scss/'))
-// })
 
 //inject
 
@@ -107,7 +87,7 @@ gulp.task('pug', function() {
         .pipe(browserSync.reload({ stream: true }));
 })
 
-
+//browser sync
 
 gulp.task('serve', function() {
     browserSync.init({
