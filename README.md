@@ -2,6 +2,6 @@
 ```
 git clone https://github.com/brnteka/boilerplate.git myProject
 cd myProject
-rm -rf .git
+find . -name ".git*" -exec rm -rf {} \;
 npm i
 ```
